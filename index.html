@@ -3,16 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <title>Incredible India - A Cultural Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --blue: #000080;
+            --gold: #CD9B1D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Decorative border with Indian pattern */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--saffron) 33.3%, var(--white) 33.3%, var(--white) 66.6%, var(--green) 66.6%);
+            z-index: 1000;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        .chakra {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 2px solid var(--blue);
+            position: relative;
+            animation: spin 20s linear infinite;
+        }
+        
+        .chakra::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: var(--blue);
+            border-radius: 50%;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--saffron);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--saffron);
+        }
+        
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            margin: 0 auto;
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .culture-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .culture-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--blue);
+        }
+        
+        .card-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--saffron);
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .read-more::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--saffron);
+            transition: width 0.3s;
+        }
+        
+        .read-more:hover::after {
+            width: 100%;
+        }
+        
+        .parallax {
+            height: 300px;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1561361513-2d000a50f2ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .parallax h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .parallax p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--saffron);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--saffron);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--saffron);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 15px;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            background-color: #444;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--saffron);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>My name is Abhinav</h1>
-    <h2>My class is your class</h2>
-
-    <p style="color: red;">I am having fun creating my page</p>
-
-    <p>This directs to <a href="https://www.google.com/?safe=active&ssui=on">google.com</a></p>
-
-    <p>Please visit again!</p>
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Incredible India</h1>
+            <div class="chakra"></div>
+            <p>A land of ancient wisdom, vibrant colors, and diverse traditions</p>
+        </div>
+    </div>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Incredible India</div>
+            <ul class="nav-links">
+                <li><a href="#history">History</a></li>
+                <li><a href="#art">Art & Architecture</a></li>
+                <li><a href="#cuisine">Cuisine</a></li>
+                <li><a href="#festivals">Festivals</a></li>
+                <li><a href="#spirituality">Spirituality</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="section" id="history">
+        <div class="section-title">
+            <h2>A Rich Cultural Heritage</h2>
+        </div>
+        <p>India is one of the oldest civilizations in the world with a kaleidoscopic variety of traditions, cultures, and heritage. Its history dates back to over 5,000 years, with various dynasties and empires leaving their unique mark on the country's cultural fabric.</p>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Taj Mahal">
+                </div>
+                <div class="card-content">
+                    <h3>Ancient History</h3>
+                    <p>From the Indus Valley Civilization to the Maurya and Gupta Empires, India's ancient history is a testament to its advanced knowledge in science, mathematics, and philosophy.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1598143657523-125aa534b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Indian Classical Dance">
+                </div>
+                <div class="card-content">
+                    <h3>Medieval Period</h3>
+                    <p>The medieval period saw the rise of various regional kingdoms and the influence of Islamic culture, resulting in a beautiful blend of Indo-Islamic architecture and art.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Indian Spices">
+                </div>
+                <div class="card-content">
+                    <h3>Modern Era</h3>
+                    <p>The colonial period and the struggle for independence shaped modern India, which has emerged as the world's largest democracy with a unique blend of tradition and modernity.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="parallax">
+        <div>
+            <h2>"Unity in Diversity"</h2>
+            <p>India is a land where various religions, languages, and traditions coexist harmoniously, creating a vibrant cultural tapestry.</p>
+        </div>
+    </div>
+    
+    <section class="section" id="art">
+        <div class="section-title">
+            <h2>Art & Architecture</h2>
+        </div>
+        <p>Indian art and architecture are reflections of the country's rich cultural heritage. From ancient cave paintings to magnificent temples and palaces, India's artistic traditions are both diverse and profound.</p>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1585136917228-92c47c9b5b7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Classical Dance">
+                </div>
+                <div class="card-content">
+                    <h3>Classical Dance</h3>
+                    <p>India has eight classical dance forms including Bharatanatyam, Kathak, Odissi, and Kathakali, each with its own distinct style, costume, and storytelling techniques.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1590005024862-6b67679a29fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Temple Architecture">
+                </div>
+                <div class="card-content">
+                    <h3>Temple Architecture</h3>
+                    <p>From the intricate carvings of Khajuraho temples to the towering gopurams of South Indian temples, India's architectural heritage is a testament to its artistic genius.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Handicrafts">
+                </div>
+                <div class="card-content">
+                    <h3>Handicrafts</h3>
+                    <p>Indian handicrafts like Madhubani paintings, Pashmina shawls, and Blue Pottery are world-renowned for their exquisite craftsmanship and cultural significance.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="cuisine">
+        <div class="section-title">
+            <h2>Culinary Delights</h2>
+        </div>
+        <p>Indian cuisine is as diverse as its culture, with each region offering its own unique flavors and specialties. The use of aromatic spices and herbs makes Indian food a gastronomic delight for food lovers around the world.</p>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="North Indian Cuisine">
+                </div>
+                <div class="card-content">
+                    <h3>North Indian Cuisine</h3>
+                    <p>Known for its rich gravies, tandoori dishes, and various types of bread like naan and roti, North Indian cuisine is loved for its bold flavors and aromatic spices.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1589778655375-3c22e89e56d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="South Indian Cuisine">
+                </div>
+                <div class="card-content">
+                    <h3>South Indian Cuisine</h3>
+                    <p>South Indian cuisine is characterized by its use of rice, lentils, and coconut in various forms, with dishes like dosa, idli, and sambar being popular worldwide.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+            <div class="culture-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Street Food">
+                </div>
+                <div class="card-content">
+                    <h3>Street Food</h3>
+                    <p>Indian street food is a culinary adventure, offering a variety of flavors and textures, from spicy chaats and pani puri to sweet jalebis and kulfi.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>We are dedicated to showcasing the rich cultural heritage of India and promoting cultural understanding and appreciation.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#history">History</a></li>
+                    <li><a href="#art">Art & Architecture</a></li>
+                    <li><a href="#cuisine">Cuisine</a></li>
+                    <li><a href="#festivals">Festivals</a></li>
+                    <li><a href="#spirituality">Spirituality</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Cultural Street, New Delhi, India</li>
+                    <li><i class="fas fa-phone"></i> +91 123 456 7890</li>
+                    <li><i class="fas fa-envelope"></i> info@incredibleindia.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Incredible India. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.culture-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
-</html>
+</html></div></section></div>
